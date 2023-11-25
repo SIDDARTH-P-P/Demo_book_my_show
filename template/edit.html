@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Edit</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+
+            <div class="col-lg-4">
+             <h1 class="mt-5 pt-5">Edit</h1>
+        <form onsubmit="add_item(event)" class="form-control p-5" action="">
+        <input class="form-control" type="text" name="name" id="name" placeholder="Name of movie">
+        <input class="form-control" type="text" name="language" id="language" placeholder="language">
+        <input class="form-control" type="date" name="year" id="data" placeholder="Year">
+        <input class="form-control" type="text" name="rating" placeholder="Rating" id="rating">
+        <input class="form-control" type="text" name="vote" id="vote" placeholder="Vole">
+        <input class="form-control" type="text" name="category" placeholder="Category" id="Category">
+        <input class="form-control" type="text" name="Duration" id="time" placeholder="Time duration">
+        <label class="form-control"  for="banner_image""> Select poster image</label>
+        <label class="form-control" for="poster_image">Select banner image</label>
+        <input id="banner_image" class="form-control" type="file" name="banner_image" id="banner">
+        <input id="poster_image" type="file" name="poster_image" id="">
+        <input class="form-control" type="submit" value="Upload">
+    </form>
+            </div>
+
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+    <script>
+        function get_edit(){
+            let id = location.href.split("?")[1]
+            fetch(`http://localhost:3000/edit/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById("name").value = data.name
+                document.getElementById("language").value = data.language
+                let date = data.year.split("T")[0]
+                document.getElementById("data").value = date
+                document.getElementById("rating").value = data.rating
+                document.getElementById("vote").value = data.vote
+                document.getElementById("Category").value = data.category
+                document.getElementById("time").value = data.Duration
+        })
+    }
+        get_edit();
+    </script>
+</body>
+</html>

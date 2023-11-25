@@ -2,12 +2,15 @@ function register(){
     location.href = `http://localhost:3000/register.html`
 }
 
+function login(){
+    location.href = `http://localhost:3000/register_login.html`
+}
+
 function print(){
     fetch(`http://localhost:3000/api`)
     .then(res => res.json())
     .then(data => {
         data.map((item)=>{
-            console.log(item.images[0].filename);
             let cart = `
             <div class="col-lg-3 pt-5">
             <a href="http://localhost:3000/details.html?${item._id}">
