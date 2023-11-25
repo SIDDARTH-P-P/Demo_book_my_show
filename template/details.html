@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Details</title>
+</head>
+<body>
+    
+    <div id="detail">
+
+        </div>
+
+    <script>
+        let id = location.href.split("?")[1];
+        function get_movi(){
+            fetch(`http://localhost:3000/get_movie/${id}`)
+            .then(res => res.json())
+            .then(data =>{
+               let  p = `<div id="back" style="background-image:url(http://localhost:3000/get_file/${data.images[1].filename});">
+                <div class="container">
+                <div class="row">
+            <div class="col-lg-4">
+                <img class=" back pt-5 pb-5 mb-5 mt-5 ms-5 ps-5" src="http://localhost:3000/get_file/${data.images[0].filename}" alt="">
+            </div>
+            <div class="col-lg">
+                <h1 class="pt-5 mt-5"><b>${data.name}</b></h1>
+                <div class="row">
+            <div class="col-lg-1"><button onclick="edit(${data._id})" >Edit</button></div>
+            <div class="col-lg-6"><button onclick="del(${data._id})" >Delet</button></div>
+        </div>
+            </div>
+                </div>
+            </div>`
+                document.getElementById("detail").innerHTML = p
+            })
+        }
+        get_movi();
+    </script>
+</body>
+</html>

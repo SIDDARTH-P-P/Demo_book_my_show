@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h1>Register</h1>
+            <form onsubmit="add_item(event)" class="form-control p-5" action="">
+                <input class="form-control" type="text" name="name" placeholder="Name of movie">
+                <input class="form-control" type="text" name="language" id="" placeholder="language">
+                <input class="form-control" type="date" name="year" id="" placeholder="Year">
+                <input class="form-control" type="text" name="rating" placeholder="Rating">
+                <input class="form-control" type="text" name="vote" id="" placeholder="Vole">
+                <input class="form-control" type="text" name="category" placeholder="Category">
+                <input class="form-control" type="text" name="Duration" id="" placeholder="Time duration">
+                <label class="form-control"  for="banner_image""> Select poster image</label>
+                <label class="form-control" for="poster_image">Select banner image</label>
+                <input id="banner_image" class="form-control" type="file" name="banner_image" id="">
+                <input id="poster_image" type="file" name="poster_image" id="">
+                <input class="form-control" type="submit" value="Upload">
+            </form>
+
+            <script>
+                function add_item(event){
+                    event.preventDefault();
+                    let formdata = new FormData(event.target);
+                    fetch(`http://localhost:3000/api`,{
+                        method:"post",
+                        body:formdata
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        location.href = `http://localhost:3000/index.html`
+                    })
+                }
+            </script>
+        </body>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</html>
