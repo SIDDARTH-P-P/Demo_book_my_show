@@ -15,6 +15,7 @@ function logout(){
    }
 }
 
+
 function print(){
     fetch(`http://localhost:3000/api`)
     .then(res => res.json())
@@ -39,8 +40,17 @@ function print(){
     })
 
     let token = localStorage.getItem("token");
-    if(token){
-        document.getElementById("nav_button").innerHTML = ` <button onclick="register()" class="bg-danger me-5">Register</button>  <button onclick="logout()" class="bg-danger me-5">Logout</button>`
-    }
+    fetch(`http://localhost:3000/auth`,{
+        method:"get",
+        headers:{authorization:`Bearer ${token}`}
+    })
+    .then(res =>{
+        if(res.status == 200){
+          return  document.getElementById("nav_button").innerHTML = ` <button class="btn btn-warning me-5" onclick="register()">Add Movie</button>  <button onclick="logout()" class="btn btn-danger me-5">Logout</button>`
+        }
+        res.json()
+        alert("Unauthorized access plese try to login")
+    })
+
 }
 print();

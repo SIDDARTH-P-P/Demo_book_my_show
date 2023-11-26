@@ -44,7 +44,7 @@ export async function login(req,res){
         if(userdata){
             let result = await bcrypt.compare(password,userdata.password)
             if(result){
-                let token = await sign({username:userdata.username,id:userdata._id},process.env.SCRET_KEY,{expiresIn:"24h"})
+                let token = await sign({username:userdata.username,id:userdata._id},process.env.SCRET_KEY,{expiresIn:"1h"})
                return res.json({msg:"Successfully login",token})
             }
             res.status(401).json("Invalid username or password")
@@ -128,9 +128,23 @@ export async function get_movie(req,res){
 }
 
 
-export async function edit_data(req,res){
+export async function get_edit_data(req,res){
     let {id} = req.params;
     let result = await schema.findOne({_id:id})
     res.json(result);
 }
 
+export async function edit_data(req,res){
+    let {id} = req.params;
+    let {name,language,year,rating,vote,category,Duration} = req.body
+    let update = await schema.updateOne({_id:id},{$set:{name,language,year,rating,vote,category,Duration}})
+    if(update){
+       return res.json("Successfully Updated")
+    }
+    res.status(400).json("Error to Update");
+}
+
+
+export function auth(req,res){
+    res.status(200).json("login")
+}

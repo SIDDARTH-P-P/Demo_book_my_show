@@ -13,7 +13,7 @@
 
             <div class="col-lg-4">
              <h1 class="mt-5 pt-5">Edit</h1>
-        <form onsubmit="add_item(event)" class="form-control p-5" action="">
+        <form onsubmit="edit_item(event)" class="form-control p-5" action="">
         <input class="form-control" type="text" name="name" id="name" placeholder="Name of movie">
         <input class="form-control" type="text" name="language" id="language" placeholder="language">
         <input class="form-control" type="date" name="year" id="data" placeholder="Year">
@@ -33,7 +33,7 @@
         </div>
     </div>
     <script>
-        function get_edit(){
+        function get_edit_field(){
             let id = location.href.split("?")[1]
             fetch(`http://localhost:3000/edit/${id}`)
             .then(res => res.json())
@@ -49,7 +49,37 @@
                 document.getElementById("time").value = data.Duration
         })
     }
-        get_edit();
+
+        get_edit_field();
+
+        function edit_item(event){
+            let id = location.href.split("?")[1]
+            event.preventDefault();
+            let formdata = new FormData(event.target)
+            let name = event.target[0].value
+            let language = event.target[1].value
+            let year = event.target[2].value
+            let rating = event.target[3].value
+            let vote = event.target[4].value
+            let category = event.target[5].value
+            let Duration = event.target[6].value
+            fetch(`http://localhost:3000/edit/${id}`,{
+                method:"post",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({name,language,year,rating,vote,category,Duration})
+            })
+            .then(res => {
+                if(res.status == 400){
+                    return alert("Error updating");
+                }
+              return res.json()
+            })
+            .then(data => {
+                alert(data);
+                location.href = `http://localhost:3000/details.html?${id}`
+            })
+        }
+
     </script>
 </body>
 </html>

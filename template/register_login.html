@@ -3,25 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>login</h1>
-    <form onsubmit="userdata(event)">
-        <input type="text" name="username">
-        <input type="email" name="email">
-        <input type="text" name="phone">
-        <input type="password" name="password">
-        <input type="submit" value="signin">
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
 
-    <form onsubmit="login(event)">
-        <input type="text" name="username" id="">
-        <input type="password" name="password">
-        <input type="submit" value="Login">
-    </form>
+            <div class="col-lg-4">
+                <h1 class="fs-4 mt-5">login or create account</h1>
+                <form onsubmit="userdata(event)">
+                    <input class="form-control" type="text" name="username" placeholder="username">
+                    <input class="form-control" type="email" name="email" placeholder="email">
+                    <input class="form-control" type="text" name="phone" placeholder="phone">
+                    <input class="form-control" type="password" name="password" placeholder="password">
+                    <input class="form-control" type="submit" value="signin">
+                </form>
+            
+                <form class="pt-5 mt-5" onsubmit="login(event)">
+                    <input class="form-control"  type="text" name="username" id="">
+                    <input class="form-control"  type="password" name="password">
+                    <input class="form-control"  type="submit" value="Login">
+                </form>
 
-
+                <form class="ps-5 ms-5 mt-5" action="/">
+                    <div class="ms-4">
+                        <input class="ms-5" type="submit" value="home">
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
     <script>
         function login(event){
             event.preventDefault()
