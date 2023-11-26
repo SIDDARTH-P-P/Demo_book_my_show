@@ -47,12 +47,16 @@
             location.href = `http://localhost:3000/edit.html?${id}`
         }
         function del(id){
-            fetch(`http://localhost:3000/del_item/${id}`)
+            let cnf = confirm("Are you sure do you want to delet this film !")
+            if(cnf){
+             fetch(`http://localhost:3000/del_item/${id}`)
             .then(res => res.json())
             .then(data => {
+                alert(data)
                 location.href = `http://localhost:3000`
-            })
-        }
+             })
+         }
+    }
     </script>
 </body>
 

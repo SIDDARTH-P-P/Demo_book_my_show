@@ -33,11 +33,25 @@
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({username,password})
             })
-            .then(res => res.json())
-            .then(data => { console.log(data) })
+            .then(res =>{
+                if(res.status == 404){
+                  return  alert("User Not Found !")
+                }
+            else if(res.status == 401){
+                 return alert("Invalid username or password")
+                }
+            return res.json()
+            })
+            .then(data => { 
+                console.log(data) 
+                alert(data.msg)
+                localStorage.setItem("token",data.token)
+                location.href = `http://localhost:3000`
+            })
         }
 
         function userdata(event){
+            event.preventDefault()
             let formdata = new FormData(event.target)
             let username = event.target[0].value
             let email = event.target[1].value
@@ -47,6 +61,11 @@
                 method:"post",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({username,email,phone,password})
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data)
+                location.href = `http://localhost:3000/register_login.html`
             })
         }
     </script>
