@@ -9,11 +9,10 @@
 </head>
 
 <body>
-
+    
     <div id="detail">
 
     </div>
-
     <script>
         let id = location.href.split("?")[1];
         function get_movi() {
@@ -38,7 +37,7 @@
             </div>
                 </div>
             </div>
-            <div class="ms-5"><form class="mb-5" action="/"><button class="btn btn-primary mb-5">home</button></form></div>`
+            <div class="ms-5"> <a href="/"><button class="btn btn-primary mb-5">home</button></a> </div>`
                     document.getElementById("detail").innerHTML = movie_details
                 })
         }
@@ -59,6 +58,7 @@
          }
     }
     </script>
+     <script src="./min.js"></script>
 </body>
 
 </html>

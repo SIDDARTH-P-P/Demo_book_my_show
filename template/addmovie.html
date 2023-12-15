@@ -7,10 +7,11 @@
     <title>Add Movie</title>
 </head>
 <body>
+    <div class="container">
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <h1>Register</h1>
+            <h1 class="mt-5 pt-5">Add Movies</h1>
             <form onsubmit="add_item(event)" class="form-control p-5" action="">
                 <input class="form-control" type="text" name="name" placeholder="Name of movie">
                 <input class="form-control" type="text" name="language" id="" placeholder="language">
@@ -25,7 +26,11 @@
                 <input id="poster_image" type="file" name="poster_image" id="">
                 <input class="form-control" type="submit" value="Upload">
             </form>
-
+            <span class="ps-5 fs-5 ps"><a href="/">back</a></span>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
             <script>
                 function add_item(event){
                     event.preventDefault();
@@ -42,7 +47,4 @@
                 }
             </script>
         </body>
-        </div>
-        <div class="col-lg-4"></div>
-    </div>
 </html>
